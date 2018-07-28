@@ -20,6 +20,11 @@ const cargarDB = () => {
   }
 };
 
+let listadoTarea = () => {
+  cargarDB();
+  return todo;
+};
+
 let crearTarea = descripcion => {
   cargarDB();
 
@@ -36,5 +41,6 @@ let crearTarea = descripcion => {
 };
 
 module.exports = {
-  crearTarea: crearTarea
+  crearTarea: crearTarea,
+  listadoTarea: listadoTarea
 };
