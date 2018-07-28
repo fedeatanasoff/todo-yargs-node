@@ -12,7 +12,17 @@ const guardarDB = () => {
   });
 };
 
+const cargarDB = () => {
+  try {
+    todo = require("../db/data.json");
+  } catch (error) {
+    todo = [];
+  }
+};
+
 let crearTarea = descripcion => {
+  cargarDB();
+
   let tarea = {
     descripcion: descripcion,
     completado: false
