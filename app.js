@@ -1,5 +1,10 @@
 const { argv } = require("./config/yargs");
-const { crearTarea, listadoTarea, actualizarTarea } = require("./todo/todo");
+const {
+  crearTarea,
+  listadoTarea,
+  actualizarTarea,
+  borrarTarea
+} = require("./todo/todo");
 const colors = require("colors");
 
 let comando = argv._[0];
@@ -22,7 +27,11 @@ switch (comando) {
     break;
   case "actualizar":
     let actualizar = actualizarTarea(argv.descripcion, argv.completado);
-    console.log(actualizar);
+    // console.log(actualizar);
+    break;
+  case "borrar":
+    let borrada = borrarTarea(argv.descripcion);
+    console.log(borrada);
     break;
   default:
     console.log("Comando no reconocido");

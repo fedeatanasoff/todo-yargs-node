@@ -8,7 +8,7 @@ const guardarDB = () => {
   fs.writeFile("db/data.json", data, err => {
     if (err) throw new Error("la tarea no se pudo salvar", err);
 
-    console.log("La tarea ha sido guardada");
+    console.log("se ha actualizado la DB");
   });
 };
 
@@ -52,6 +52,24 @@ let actualizarTarea = (descripcion, completado) => {
     guardarDB();
     return true;
   } else {
+    console.log("no se ha encontrado una tarea con esa descripcion");
+    return false;
+  }
+};
+
+let borrarTarea = descripcion => {
+  cargarDB();
+
+  let indice = todo.findIndex(tarea => {
+    return tarea.descripcion === descripcion;
+  });
+
+  if (indice >= 0) {
+    todo.splice(indice, 1);
+    guardarDB();
+    return true;
+  } else {
+    console.log("no existe una tarea con ese nombre");
     return false;
   }
 };
@@ -59,5 +77,6 @@ let actualizarTarea = (descripcion, completado) => {
 module.exports = {
   crearTarea: crearTarea,
   listadoTarea: listadoTarea,
+  borrarTarea: borrarTarea,
   actualizarTarea: actualizarTarea
 };
