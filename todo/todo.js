@@ -40,7 +40,24 @@ let crearTarea = descripcion => {
   return tarea;
 };
 
+let actualizarTarea = (descripcion, completado) => {
+  cargarDB();
+
+  let indice = todo.findIndex(tarea => {
+    return tarea.descripcion === descripcion;
+  });
+
+  if (indice >= 0) {
+    todo[indice].completado = completado;
+    guardarDB();
+    return true;
+  } else {
+    return false;
+  }
+};
+
 module.exports = {
   crearTarea: crearTarea,
-  listadoTarea: listadoTarea
+  listadoTarea: listadoTarea,
+  actualizarTarea: actualizarTarea
 };
