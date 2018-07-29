@@ -1,37 +1,25 @@
-const opt = {
-  descripcion: {
-    demand: true,
-    alias: "d",
-    desc: "descripcion de la tarea por realizar"
-  }
+const descripcion = {
+  demand: true,
+  alias: "d",
+  desc: "descripcion de la tarea por realizar"
+};
+
+const completado = {
+  default: true,
+  alias: "c",
+  desc: "marca como cpletado la tarea"
 };
 
 const argv = require("yargs")
   .command("crear", "Crea una tarea por hacer", {
-    descripcion: {
-      demand: true,
-      alias: "d",
-      desc: "descripcion de la tarea por realizar"
-    }
+    descripcion
   })
   .command("actualizar", "Actualiza el estado completado de una tarea", {
-    descripcion: {
-      demand: true,
-      alias: "d",
-      desc: "descripcion de la tarea por realizar"
-    },
-    completado: {
-      default: true,
-      alias: "c",
-      desc: "marca como cpletado la tarea"
-    }
+    descripcion,
+    completado
   })
   .command("borrar", "elimina una tarea", {
-    descripcion: {
-      demand: true,
-      alias: "d",
-      desc: "descripcion de la tarea por realizar"
-    }
+    descripcion
   })
   .help().argv;
 
