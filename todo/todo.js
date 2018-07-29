@@ -60,18 +60,29 @@ let actualizarTarea = (descripcion, completado) => {
 let borrarTarea = descripcion => {
   cargarDB();
 
-  let indice = todo.findIndex(tarea => {
-    return tarea.descripcion === descripcion;
+  let newTodo = todo.filter(tarea => {
+    return tarea.descripcion != descripcion;
   });
 
-  if (indice >= 0) {
-    todo.splice(indice, 1);
+  if (todo.length === newTodo.length) {
+    return false;
+  } else {
+    todo = newTodo;
     guardarDB();
     return true;
-  } else {
-    console.log("no existe una tarea con ese nombre");
-    return false;
   }
+  // let indice = todo.findIndex(tarea => {
+  //   return tarea.descripcion === descripcion;
+  // });
+
+  // if (indice >= 0) {
+  //   todo.splice(indice, 1);
+  //   guardarDB();
+  //   return true;
+  // } else {
+  //   console.log("no existe una tarea con ese nombre");
+  //   return false;
+  // }
 };
 
 module.exports = {
